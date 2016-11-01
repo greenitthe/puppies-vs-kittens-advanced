@@ -20,8 +20,13 @@
     "url": "https://github.com/unioncollege-webtech/puppies-vs-kittens/issues"
   },
   "homepage": "https://github.com/unioncollege-webtech/puppies-vs-kittens",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
   "dependencies": {
+    "chart.js": "^2.3.0",
     "express": "^4.13.3",
+    "pug": "^2.0.0-beta6",
     "socket.io": "^1.5.1"
   }
 }

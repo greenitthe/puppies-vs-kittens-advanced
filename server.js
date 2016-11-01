@@ -7,8 +7,16 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
+//Templating
+app.set('views', __dirname + 'public/views');
+app.set('view engine', 'pug');
+
 // Serve files in the 'public' directory with Express's built-in static file server
 app.use(express.static('public'));
+
+app.get('/d', function (req, res) {
+  res.render('index', { title: "hey", message: "hello" });
+});
 
 // Create a Counter class that will be used to create counter objects
 // See the full description in README.md
@@ -23,7 +31,7 @@ io.on('connection', function (socket) {
   io.emit('score', {puppy: ScoreCounter.retrieve('puppies'),
                     kitten: ScoreCounter.retrieve('kittens')});
   socket.on('vote', function (data) {
-    console.log('Vote received from: ' + socket.request.connection.remoteAddress);
+    //console.log('Vote received from: ' + socket.request.connection.remoteAddress);
     /** Here would be the code to check if we know this IP and it has already voted if I wanted.
      * I decided to not do that since running it from localhost means that I would have a hard time
      * voting more than once... **/
@@ -40,40 +48,6 @@ io.on('connection', function (socket) {
   });
 });
 
-/**
-// Respond to 'get' requests for the route '/kittens'
-// - Record a vote for 'kittens'
-// - Retrieve the new cumulative votes for 'kittens'
-// - Respond with with the message:
-//     "Thank you for voting! Kittens have 12 total votes so far."
-
-app.get('/kittens', function (req, res) {
-  ScoreCounter.record('kittens');
-  var kittenScore = ScoreCounter.retrieve('kittens');
-  var puppyScore = ScoreCounter.retrieve('puppies');
-
-  console.log('Vote for puppies from: \"' + req.connection.remoteAddress + '\", now: ' + kittenScore + ' kittens v ' + puppyScore + ' puppies!')
-  res.send('Thank you for voting! Kittens now have ' + kittenScore + ' total votes so far.');
-  io.emit('score', {puppy: puppyScore,
-                    kitten: kittenScore});
-});
-
-// Respond to 'get' requests for the route '/puppies'
-// - Record a vote for 'puppies'
-// - Retrieve the new cumulative votes for 'puppies'
-// - Respond with with the message:
-//     "Thank you for voting! Puppies have 12 total votes so far."
-app.get('/puppies', function (req, res) {
-  ScoreCounter.record('puppies');
-  var kittenScore = ScoreCounter.retrieve('kittens');
-  var puppyScore = ScoreCounter.retrieve('puppies');
-
-  console.log('Vote for puppies from: \"' + req.connection.remoteAddress + '\", now: ' + kittenScore + ' kittens v ' + puppyScore + ' puppies!')
-  res.send('Thank you for voting! Kittens now have ' + puppyScore + ' total votes so far.')
-  io.emit('score', {puppy: puppyScore,
-                    kitten: kittenScore});
-});
-**/
 // Have the Express application listen for incoming requests on port 8080
 server.listen(8080, function() {
   console.log('Puppies v Kittens server listening on port 8080.');
