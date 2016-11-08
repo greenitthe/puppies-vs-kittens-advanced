@@ -103,9 +103,38 @@ user-select: none;
   cursor: pointer;
 }
 
+#options {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+}
+
+#responseLimitations {
+  margin-top: 1rem;
+  display: flex;
+  width: 90%;
+  padding: 0.5rem;
+  background-color: #20bd51;
+}
+
+#responseLimitations:hover {
+  background-color: #28e362;
+  cursor: pointer;
+}
+
+.limiting {
+  background-color: #eb2626 !important;
+}
+
+.limiting:hover {
+  background-color: #e35e41 !important;
+}
+
 #canvas-holder {
   display: flex;
   width: 90%;
+  margin-bottom: 1rem;
 }
 
 #voteCanvas {

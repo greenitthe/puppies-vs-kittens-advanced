@@ -29,4 +29,8 @@ Counter.prototype.results = function() {
   return ret;
 };
 
+Counter.prototype.set = function(key, val) {
+  this.scores[key] = val;
+}
+
 module.exports = Counter;

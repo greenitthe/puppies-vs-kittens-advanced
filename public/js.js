@@ -16,6 +16,21 @@ socket.on('score', function (data) {
   }
 });
 
+socket.on('resLimResponse', function (data) {
+  if (data.status == true) {
+    if ($('#responseLimitations').hasClass('limiting')) {
+      $('#responseLimitations').toggleClass('limiting');
+    }
+    $('#responseLimitations').text("Limiting Responses");
+  }
+  else {
+    if (!$('#responseLimitations').hasClass('limiting')) {
+      $('#responseLimitations').toggleClass('limiting');
+    }
+    $('#responseLimitations').text("Not Limiting Responses");
+  }
+});
+
 $(document).ready(function() {
   /**
    * Pie Chart Thingie
@@ -32,6 +47,10 @@ $(document).ready(function() {
     //console.log('clicked kittens');
     socket.emit('vote', { puppies: false,
                           kittens: true  });
+  });
+
+  $('#responseLimitations').click(function() {
+    socket.emit('limits', { toggle: true });
   });
 });
 

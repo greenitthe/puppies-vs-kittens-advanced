@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title="Puppies vs. Kittens! v2"
+    link(rel="stylesheet" href="/styles.css")
+    meta(name="viewport" content="width=device-width")
+    script(src="/dist/socket.io.js")
+    script(src="/dist/Chart.bundle.js")
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js")
+    script(src="./js.js")
+  body
+    Main
+      div#headingStuff
+        h1="Puppies vs. kittens v2"
+        p="Cast your vote for the cuter creature: puppies or kittens:"
+      div#voteBox
+        p="Place your votes on which are best: puppies or kittens!"
+        div#buttonContainer
+          span#puppiesButton.voteButton="PUPPIES!"
+          span#kittensButton.voteButton="KITTENS!"
+      div#score
+        h2="Puppies: "
+          span#puppyScore=0
+        h2="Kittens: "
+          span#kittenScore=0
+      div#canvas-holder
+        canvas#voteCanvas(width="80%" height="60%")
+      div#options
+        p="To show that the voting works even for multiple votes, you may disable the server-side checking against multiple votes from the same IP"
+        span#responseLimitations.voteButton="Limiting Responses"
