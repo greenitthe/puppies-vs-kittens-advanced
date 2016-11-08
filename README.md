@@ -1,6 +1,8 @@
 Puppies Versus Kittens
 ======================
 
+### Get a REDIS server running before running the server
+
 [![Join the chat at https://gitter.im/unioncollege-webtech/puppies-vs-kittens](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/unioncollege-webtech/puppies-vs-kittens?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Create an Express application to judge who is cuter: puppies or kittens.
@@ -8,7 +10,7 @@ Create an Express application to judge who is cuter: puppies or kittens.
 Description
 -----------
 
-In this exercise we will build a website that will allow visitors to vote on 
+In this exercise we will build a website that will allow visitors to vote on
 which is cuter: puppies or kittens. The website will consist of one static
 index.html file and two dynamic routes: one to record votes for puppies, the
 other to record votes for kittens. Additionally, we will define a new [class][classes]
@@ -22,27 +24,27 @@ Express to build our application.
 Currently [server.js](./server.js) has an outline of the steps necessary to
 serve static files and respond to the `get` requests to `/kittens` and
 `/puppies`. Use the [Express API documentation][Express] (specifically, the pages
-linked to in the [References](#references) section below) to build out the 
+linked to in the [References](#references) section below) to build out the
 required pieces. Feel free to use the [Express Static Server] repository as a
 starting point as well.
 
 ## Create the `Counter` function
 
-In this exercise we are also experimenting with 
+In this exercise we are also experimenting with
 [creating classes in JavaScript][classes]. JavaScript doesn't have traditional
 classes like a typical object oriented programming language. Instead, JavaScript
-uses functions as constructors for classes, and we use the `new` operator to 
+uses functions as constructors for classes, and we use the `new` operator to
 construct objects from those functions. Instance methods are created by
 adding functions to the `.prototype` property of the constructor function.
 
-> Reference note: the Mozilla Developer Network’s 
+> Reference note: the Mozilla Developer Network’s
 [Introduction to Object-Oriented JavaScript][classes] is an excellent
 description of JavaScript’s approach to object-oriented programming.
 
 We will be defining a new class called `Counter` to record the votes for puppies
 and kittens. We'll create a new counter instance, then call `counter.record('puppies')`
 to record a vote for puppies, and `counter.record('kittens')` to record votes for
-kittens. We'll retrive the accumulated votes by calling 
+kittens. We'll retrive the accumulated votes by calling
 `counter.retrieve('puppies')`, and `counter.retrieve('kittens')`.
 
 A starting point for the `Counter` class is below:
@@ -65,7 +67,7 @@ Counter.prototype.retrieve = function(key) {
 
 // .results() - return an object containing the cumulative counts for all keys
 Counter.prototype.results = function() {
-    
+
 };
 
 // Create a new counter instance
@@ -86,16 +88,16 @@ for '/puppies' and '/kittens' to record the votes and retrieve the totals.
 ## Add links to “index.html”
 
 Visitors to the website will be served [`index.html`](./index.html) and will
-cast their votes by clicking on a link for their preferred animal. We need to 
+cast their votes by clicking on a link for their preferred animal. We need to
 update index.html and add links to "/puppies" and "/kittens" so it looks
 something like this:
 
 > <h1>Puppies vs. Kittens</h1>
 > <p>Cast your vote for the cuter creature: puppies or kittens:</p>
-> 
+>
 > <a href="/puppies">Puppies</a> <a href="/kittens">Kittens</a>
 
-When the user clicks on one of those links, they will be sent to `/puppies` or 
+When the user clicks on one of those links, they will be sent to `/puppies` or
 `/kittens` on our domain. We will be listening for those requests in `server.js`
 and will send back a message like the following:
 
@@ -139,7 +141,7 @@ Completing and submitting the assignment
 - [Create a pull request](https://help.github.com/articles/creating-a-pull-request) on the original repository to turn in the assignment.
 - [Create a separate branch](http://gitref.org/branching/#branch) for the extra credit options.
 
-You are also welcome commit, push, and create a pull request **before** you’ve 
+You are also welcome commit, push, and create a pull request **before** you’ve
 completed your solution. You can ask questions or request feedback there in your
 pull request. Just mention `@barberboy` in your comments to get my attention.
 
